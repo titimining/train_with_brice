@@ -11,36 +11,197 @@
 
 <body>
 <header>
-  Javascript Exercises - Array's manipulation
+  <h1>
+    Javascript exercises - Array manipulation
+  </h1>
 </header>
-<main>
-  <div class="ex-1__reverse">
-    <div class="ex-1__question">REGAGNER</div>
-    <div class="ex-1__result"></div>
+<main class="content__js-exercises">
+  <div class="exercise ex-1__reverse">
+    <div class="exercise__question ex-1__question">
+      <h2>Exercise 1:</h2>
+      <p>Reverse the word.
+        <strong class="ex-1__question-word">REGAGNER</strong>
+      </p>
+    </div>
+    <div class="exercise__result ex-1__result"></div>
+  </div>
+  <div class="exercise ex-2__filter">
+    <div class="exercise__question ex-2__question">
+      <h2>Exercise 2:</h2>
+      <p>Remove the last 4 letters of the word.
+        <strong class="ex-2__question-word">CHAUDIERE</strong>
+      </p>
+    </div>
+    <div class="exercise__result ex-2__result"></div>
+  </div>
+  <div class="exercise ex-3__find-mark">
+    <div class="exercise__question ex-3__question">
+      <h2>Exercise 3:</h2>
+      <p>Display information of the user called Mark</p>
+    </div>
+    <div class="exercise__result ex-3__result">
+      <img class="ex-3__result-img" src="" alt="">
+      <div class="ex-3__result-information">
+        <h4 class="ex-3__result-name"></h4>
+        <span class="ex-3__result-company"></span>
+        <a class="ex-3__result-email" href="">Envoyer un mail</a>
+      </div>
+    </div>
+  </div>
+  <div class="exercise ex-4__oldest">
+    <div class="exercise__question ex-4__question">
+      <h2>Exercise 4:</h2>
+      <p>Find out who is the youngest and the oldest.</p>
+    </div>
+    <div class="exercise__result ex-4__result">
+      <p>Youngest : <strong class="ex-4__result-youngest"></strong> </p>
+      <p>Oldest : <strong class="ex-4__result-oldest"></strong> </p>
+    </div>
+  </div>
 
+  <div class="exercise ex-5__get-average-age">
+    <div class="exercise__question ex-5__question">
+      <h2>Exercise 5:</h2>
+      <p>Each user in the list has an age, calculate the average age.</p>
+    </div>
+    <div class="exercise__result ex-5__result"></div>
   </div>
 </main>
 
-<script>
+<script type="module">
+  import users from './assets/json/users.json' assert { type: "json" };
+
+
   (() => {
+    const usersList = JSON.parse(JSON.stringify(users));
+     /**
+      * We can define a variable with var, let or const
+      * We don't use var nowadays
+      * Difference between const and let
+      * When you define a variable with const, you cannot change its value
+      * Example:
+      * const a = 3;
+      *
+      * /!\ const a = 4; -> it won't work
+      * When you define a variable with const, you can redefine its value
+      * Example:
+      * const a = 3;
+      * /!\ const a = 4; -> it'll work
+      **/
+
+    // Multiple ways to get our reversed word
     const toReverse = () => {
-      const wordToReverse = document.querySelector('.ex-1__question');
-      const reversedWordToReverse = wordToReverse.innerHTML.split('').reverse().join('');
+      /*
+      *The querySelector is used to retrieve our element from the HTML
+      * after getting our element, we need its content
+      * -> means the string/word inside my tag
+      * To get it, we need the innerHTML property
+      */
+      const wordToReverse = document.querySelector('.ex-1__question-word').innerHTML;
+
+      /* 1st step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+       * Split the string 'REGAGNER' => ["R", "E", "G", "A", "G", "N", "E", "R"]
+       */
+
+      /* 2nd step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
+       * Reverse the array ["R", "E", "G", "A", "G", "N", "E", "R"]
+       * => ["R", "E", "N", "G", "A", "G", "E", "R"]
+       */
+
+      /* 3rd step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
+       * Join the array
+       * ["R", "E", "N", "G", "A", "G", "E", "R"]  => "RENGAGER"
+       */
 
       const tag = document.querySelector('.ex-1__result');
-      tag.innerHTML = reversedWordToReverse;
+      tag.innerHTML = 'reversedWord';
     }
 
     const toFilter = () => {
+      /* 1st step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+       * Split the string
+       */
 
+      /* 2nd step
+       * Define an array with the letter you don't want
+       */
+
+      /* 3rd step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+       * Condition will verify if the element (letter) is present in the array
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+       */
+
+      const tag = document.querySelector('.ex-2__result');
+      tag.innerHTML = '';
+    }
+
+    const findMark = () => {
+
+      /*
+       * The variable usersList contains an array of objects
+       * in javascript, you can access to a property of an object like this user.name
+       */
+      /*
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+       */
+      const img = document.querySelector('.ex-3__result-img');
+      const name = document.querySelector('.ex-3__result-name');
+      const company = document.querySelector('.ex-3__result-company');
+      const mail = document.querySelector('.ex-3__result-email');
+
+      name.innerHTML = 'mark.name';
+      company.innerHTML = 'mark.company';
+      mail.href = 'mailto:' + 'mark.email';
+      img.src = 'mark.picture';
+    }
+
+    const getAverageAge = () => {
+      /* 1st step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+       * Construct a new array only with the ages
+       */
+
+      /* 2nd step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+       * condition to use : ((a, b) => a + b, 0)
+       * divide the result by the length of the array
+       */
+      const tag = document.querySelector('.ex-5__result');
+    }
+
+    const orderUsersByAge = () => {
+      /* 1st step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+       * depend on the result of the return
+       * (< 0) sort a before b
+       * (> 0) sort a after b
+       * (=== 0) keep original order of a and b
+       */
+
+      /* 2nd step
+       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at
+       * return the element of the array corresponding to the index
+       */
+
+      const youngest = document.querySelector('.ex-4__result-youngest');
+      const oldest = document.querySelector('.ex-4__result-oldest');
     }
 
     toReverse();
     toFilter();
+    getAverageAge();
+    findMark();
+    orderUsersByAge();
   })();
 
 </script>
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
