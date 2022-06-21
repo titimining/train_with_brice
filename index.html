@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<header>
+  Javascript Exercises - Array's manipulation
+</header>
+<main>
+  <div class="ex-1__reverse">
+    <div class="ex-1__question">REGAGNER</div>
+    <div class="ex-1__result"></div>
+
+  </div>
+</main>
+
+<script>
+  (() => {
+    const toReverse = () => {
+      const wordToReverse = document.querySelector('.ex-1__question');
+      const reversedWordToReverse = wordToReverse.innerHTML.split('').reverse().join('');
+
+      const tag = document.querySelector('.ex-1__result');
+      tag.innerHTML = reversedWordToReverse;
+    }
+
+    const toFilter = () => {
+
+    }
+
+    toReverse();
+    toFilter();
+  })();
+
+</script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
