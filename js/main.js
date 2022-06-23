@@ -28,6 +28,7 @@ import users from './assets/json/users.json' assert { type: "json" };
             * To get it, we need the innerHTML property
             */
             const wordToReverse = document.querySelector('.ex-1__question-word').innerHTML;
+            // wordToReverse = "REGAGNER"
             const reversedWord = wordToReverse
                 /*
                 * split the string and create an array with each element
